@@ -10,12 +10,12 @@ col2 = []
 
 # Iterate over each line in the input file
 for i in range(len(txt)):
-  # Remove the newline character from the end of the line and split the line into two values
-  txt[i] = txt[i].replace('\n', '').split('   ')
+    # Remove the newline character from the end of the line and split the line into two values
+    txt[i] = txt[i].replace('\n', '').split('   ')
 
-  # Convert the values to integers and append them to the corresponding lists
-  col1.append(int(txt[i][0]))
-  col2.append(int(txt[i][1]))
+    # Convert the values to integers and append them to the corresponding lists
+    col1.append(int(txt[i][0]))
+    col2.append(int(txt[i][1]))
 
 # Sort the lists in ascending order
 col1.sort()
@@ -26,9 +26,9 @@ total = 0
 
 # Iterate over the range of the length of column 1 (assuming both columns have the same length)
 for i in range(len(col1)):
-  # Calculate the difference between the maximum and minimum values at the current index
-  # and add it to the total
-  total += max(col1[i], col2[i]) - min(col1[i], col2[i])
+    # Calculate the difference between the maximum and minimum values at the current index
+    # and add it to the total
+    total += max(col1[i], col2[i]) - min(col1[i], col2[i])
 
 # Print the total difference
 print(total)
