@@ -7,6 +7,7 @@ txt = file.readlines()
 # Initialize two empty lists to store the values from the input file
 col1 = []
 col2 = []
+col2_freq_map = {}
 
 # Iterate over each line in the input file
 for i in range(len(txt)):
@@ -16,6 +17,12 @@ for i in range(len(txt)):
     # Convert the values to integers and append them to the corresponding lists
     col1.append(int(txt[i][0]))
     col2.append(int(txt[i][1]))
+
+    # Store the frequency of each value in column 2 in a dictionary
+    if col2[i] in col2_freq_map:
+        col2_freq_map[col2[i]] += 1
+    else:
+        col2_freq_map[col2[i]] = 1
 
 # Sort the lists in ascending order
 col1.sort()
@@ -30,5 +37,19 @@ for i in range(len(col1)):
     # and add it to the total
     total += max(col1[i], col2[i]) - min(col1[i], col2[i])
 
+# Initialize a variable to store the similarity score
+similarity_score = 0
+
+# Iterate over the values in column 2
+for num in col1:
+    # If the value is in the frequency map, add it to the similarity score
+    if num in col2_freq_map:
+        # Multiply the value by the frequency of that value in column 2
+        similarity_score += num * col2_freq_map[num]
+
+
 # Print the total difference
 print(total)
+
+# Print the similarity score
+print(similarity_score)
