@@ -5,7 +5,7 @@ def read_file(filename):
 def reverse_string(string):
     return string[::-1]
   
-def calculate_total(txt):
+def calculate_total_part_1(txt):
     total = 0
     for i in range(len(txt)):
         for j in range(len(txt[i])):
@@ -27,6 +27,17 @@ def calculate_total(txt):
     
     return total
 
+def calculate_total_part_2(txt):
+    total = 0
+    for i in range(len(txt)):
+        for j in range(len(txt[i])):
+            if len(txt) > i + 2 and j < len(txt[i]) and j + 2 < len(txt[i+1]) and j + 1 < len(txt[i+1]) and j + 2 < len(txt[i+2]) and j < len(txt[i+2]):
+                diagonal_left = f'{txt[i][j]}{txt[i+1][j+1]}{txt[i+2][j+2]}'
+                diagonal_right = f'{txt[i][j + 2]}{txt[i+1][j+1]}{txt[i+2][j]}'
+                if (diagonal_left == 'MAS' or reverse_string(diagonal_left) == 'MAS') and (diagonal_right == 'MAS' or reverse_string(diagonal_right) == 'MAS'):
+                    total += 1
+    return total
+
 txt = read_file('Day4Input.txt')
 
-print(calculate_total(txt))
+print(calculate_total_part_2(txt))
